@@ -1,9 +1,8 @@
-import logo from "./logo.svg";
 import "./App.css";
 import { config } from "./config/Config";
 import { PublicClientApplication } from "@azure/msal-browser";
 // import { MsalProvider } from "@azure/msal-react";
-import react, { useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 
 function App() {
@@ -31,13 +30,13 @@ function App() {
         scopes: config.scopes,
         prompt: "select_account",
       });
-      console.log(auth);
       sessionStorage.setItem("accessToken_token", auth.accessToken);
       setIsAuthenticated(true);
+      setUser(auth);
+      console.log(user);
     } catch (err) {
       console.log(err);
       setIsAuthenticated(false);
-      setUser({});
     }
   }
 
